@@ -1,0 +1,67 @@
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="nathan-custom.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <style>
+
+  </style>
+</head>
+<body>
+
+
+
+<div class="row">
+    <!-- <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1"></div> -->
+    <div class="col-lg-4 col-md-5 col-sm-6 col-xs-10">
+        <h1 id="head-u">Protect The Island</h1>
+    </div>
+    <div class="col-lg-8 col-md-7 col-sm-6 col-xs-2" id="div-u">
+        <a href="#"><span class="glyphicon glyphicon-menu-hamburger" onclick="openNav()"></span></a>
+    </div>
+
+</div>
+<div id="u-id">
+<div class="row">
+  <div  class="my_class">
+  <p id="para-u">Hey guys! An enemy ship is circling your island. It is your duty to prevent them. What are you waiting for? Get going!  </p>
+  </div>
+</div>
+
+<div class="row">
+    <div class="nathan_center">
+        <a id="u-btn1" class="btn btn-info btn-lg" role="button" >HIT</a>
+        <a id="u-btn2" class="btn btn-info btn-lg" role="button" >Restart</a>
+    </div>
+</div>
+<div class="row">
+    <div class="nathan_center">
+        <h1>You score is </h1>
+        <h1 id="pts">0</h1>
+    </div>
+</div>
+
+
+</div>
+
+<script src="nathan-custom.js"></script>
+<script>
+var tpts = 0;
+var ipts = 0;
+$(document).ready(function(){
+    $("#u-btn1").click(function(){
+        tpts += Math.ceil(Math.random()*3);
+        $("#pts").text(tpts);
+    });
+    $("#u-btn2").click(function(){
+        $("#pts").text(ipts);
+    });
+});
+</script>
+</body>
+</html>
