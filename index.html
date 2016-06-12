@@ -3,12 +3,37 @@
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" href="nathan-custom.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
   <style>
+  #head-u{
+   padding-top:5px;
+   padding-bottom:5px;
+   text-align: center;
+   margin-left: 10px;
+   color:black;
+  }
+  .glyphicon {
+      font-size: 50px;
+      margin-top:24px;
+      color:black;
+      float:right;
+      margin-right:7px;
+      -o-transition:.5s;
+      -ms-transition:.5s;
+      -moz-transition:.5s;
+      -webkit-transition:.5s;
+      transition:.5s;
+  }
+  .glyphicon:hover {
+      color: grey;
+  }
+  .my_class{
+      margin: 20px;
+      text-align:center;
+      font-size:20px;
+  }
 
   </style>
 </head>
@@ -29,28 +54,79 @@
 <div id="u-id">
 <div class="row">
   <div  class="my_class">
-  <p id="para-u">Hey guys! An enemy ship is circling your island. It is your duty to prevent them. What are you waiting for? Get going!  </p>
+  <p class="my_class">Hey guys! An enemy ship is circling your island. It is your duty to prevent them. What are you waiting for? Get going!  </p>
   </div>
 </div>
-
 <div class="row">
-    <div class="nathan_center">
-        <a id="u-btn1" class="btn btn-info btn-lg" role="button" >HIT</a>
-        <a id="u-btn2" class="btn btn-info btn-lg" role="button" >Restart</a>
-    </div>
+<div class=" col-md-3">
+</div>
+<div class="my_class col-md-6">
+    <a id="u-btn1" class="btn btn-info btn-lg " role="button" >HIT</a>
+    <a id="u-btn2" class="btn btn-info btn-lg " role="button" >Start</a>
+</div>
+<div class="row col-md-3">
+</div>
 </div>
 <div class="row">
-    <div class="nathan_center">
+    <div class="my_class">
         <h1>You score is </h1>
         <h1 id="pts">0</h1>
     </div>
 </div>
+<div class="row">
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1">
+
+    </div>
+
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-10" id="div-u">
+        <div class="progress">
+          <div id="progress-bar" class="progress-bar progress-bar-striped active"
+          role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+          </div>
+        </div>
+    </div>
+
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-1">
+
+    </div>
+</div>
 
 
 </div>
-
-<script src="nathan-custom.js"></script>
 <script>
+var pbSize=40;
+var ProgressBar = function() {
+    var counter1 = 0;
+    var counterBack;
+    var pausedCounter=0;
+};
+
+ProgressBar.prototype.startProgressBar = function(initialCounter) {
+    counter1 = initialCounter;
+    this.counterBack = setInterval(function(){
+      counter1--;
+      $("#progress-bar").text(counter1);
+      if(counter1>0){
+        $('.progress-bar').css('width', (counter1*100/pbSize)+'%');
+      } else {
+        clearTimeout(this.counterBack);
+      }
+    }, 1000);
+};
+
+ProgressBar.prototype.stopProgressBar = function() {
+    pausedCounter = this.counter1;
+    clearTimeout(this.counterBack);
+};
+
+ProgressBar.prototype.resumeProgressBar = function() {
+    this.startProgressBar(pausedCounter);
+};
+
+
+var progressBar = new ProgressBar();
+
 var tpts = 0;
 var ipts = 0;
 $(document).ready(function(){
@@ -60,8 +136,21 @@ $(document).ready(function(){
     });
     $("#u-btn2").click(function(){
         $("#pts").text(ipts);
+        progressBar.stopProgressBar();
+        progressBar.startProgressBar(41);
+        tpts = 0;
+        $("#u-btn2").text("Restart");
+    });
+    $("#u-btn3").click(function(){
+        progressBar.stopProgressBar();
+    });
+    $("#u-btn4").click(function(){
+        progressBar.resumeProgressBar();
     });
 });
+
+
+
 </script>
 </body>
 </html>
